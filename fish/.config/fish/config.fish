@@ -57,6 +57,7 @@ alias gpl='git pull'
 alias gp='git push'
 alias gl='sh ~/.dotfiles/scripts/.config/scripts/git_log.sh -i'
 alias gbc='sh ~/.dotfiles/scripts/.config/scripts/git_clear_branches.sh'
+alias gmr='sh ~/.dotfiles/scripts/.config/scripts/glab-mr.sh'
 
 alias ga='git add'
 alias gap='git add -p'
