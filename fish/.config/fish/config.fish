@@ -10,6 +10,7 @@ set hd "$win_user_path/Donwloads"
 alias c.='n. && nvim . && cd -'
 alias cb='nvim ~/.config/bat/config'
 alias cf='nvim ~/.config/fish/config.fish'
+alias ch='nvim ~'
 alias cs='nvim ~/.config/starship.toml'
 alias cn='nn && nvim . && cd -'
 alias ck='nk && nvim . && cd -'
@@ -42,7 +43,7 @@ alias dv='docker volume'
 alias dvl='docker volume ls'
 alias dvr='docker volume rm'
 
-alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh "$HOME/personal" "$HOME/dev" "$HOME/work/services/" "$HOME/work/common/" "$HOME/work/ad-tech/") && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
+alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh "$HOME/personal" "$HOME/dev" "$HOME/work/micro/" "$HOME/work/common/" "$HOME/work/ad-tech/") && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
 
 alias ffd='_fzf_search_directory'
 alias ffh='_fzf_search_history'
@@ -115,7 +116,8 @@ starship init fish | source
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 bash -c 'syncthing &>/dev/null &'
 export FZF_DEFAULT_OPTS='--layout=reverse'
-export (grep . ~/.aireal.env)
+
+envsource ~/.aireal.env
 
 # functions
 function git_commit_or_git_checkout
@@ -136,3 +138,7 @@ function git_commit_or_git_checkout
         eval $cmd
     end
 end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
