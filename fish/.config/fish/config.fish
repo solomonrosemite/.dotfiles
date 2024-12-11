@@ -49,6 +49,8 @@ alias ffd='_fzf_search_directory'
 alias ffh='_fzf_search_history'
 alias ffp='_fzf_search_processes'
 
+alias fm='fzf-make'
+
 alias gs='git status'
 alias gsw='git switch -'
 alias gc='git_commit_or_git_checkout'
