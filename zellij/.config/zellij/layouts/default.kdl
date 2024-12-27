@@ -1,53 +1,45 @@
-// https://github.com/dj95/zjstatus/blob/main/examples/simple.kdl
 layout {
-    pane split_direction="vertical" {
-        pane
-    }
+    default_tab_template {
+        children
+        pane size=1 borderless=true split_direction="vertical" {
+            // plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+            plugin location="https://github.com/solomonrosemite/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg=#89B4FA,bold]{session}"
+                format_center   "{tabs}"
+                format_right  "{datetime}"
 
-    pane size=1 borderless=true {
-        plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
-            hide_frame_for_single_pane "true"
+                border_enabled  "false"
+                border_char     "─"
+                border_format   "#[fg=#6C7086]{char}"
+                border_position "top"
 
-            format_left  "{mode}#[fg=#89B4FA,bold] {session} {tabs}"
-            format_right "{command_kubectx}#[fg=#424554]"
-            format_space ""
+                hide_frame_for_single_pane "true"
 
-            mode_normal        "#[bg=#89B4FA] "
-            mode_locked        "#[bg=#ef5f6b] "
-            mode_resize        "#[bg=#ffc387] "
-            mode_pane          "#[bg=#ffc387] "
-            mode_tab           "#[bg=#ffc387] "
-            mode_scroll        "#[bg=#ffc387] "
-            mode_enter_search  "#[bg=#ffc387] "
-            mode_search        "#[bg=#ffc387] "
-            mode_rename_tab    "#[bg=#ffc387] "
-            mode_rename_pane   "#[bg=#ffc387] "
-            mode_session       "#[bg=#ffc387] "
-            mode_move          "#[bg=#ffc387] "
-            mode_prompt        "#[bg=#ffc387] "
-            mode_tmux          "#[bg=#ffc387] "
-            mode_default_to_mode "tmux"
+                mode_normal        "#[bg=blue] "
+                mode_locked        "#[bg=#ef5f6b]lock "
+                mode_resize        "#[bg=#ffc387]resize "
+                mode_pane          "#[bg=#ffc387]pane "
+                mode_tab           "#[bg=#ffc387]tab "
+                mode_scroll        "#[bg=#ffc387]scroll "
+                mode_enter_search  "#[bg=#ffc387]search "
+                mode_search        "#[bg=#ffc387]search "
+                mode_rename_tab    "#[bg=#ffc387]tab "
+                mode_rename_pane   "#[bg=#ffc387]pane "
+                mode_session       "#[bg=#ffc387]session "
+                mode_move          "#[bg=#ffc387]move "
+                mode_prompt        "#[bg=#ffc387]prompt "
+                mode_tmux          "#[bg=#ffc387]tmux "
 
-            tab_normal               "#[fg=#6C7086] {index} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-            tab_active               "#[fg=#9399B2,bold,italic] {index} {fullscreen_indicator}{sync_indicator}{floating_indicator}"
-            tab_fullscreen_indicator "□ "
-            tab_sync_indicator       "  "
-            tab_floating_indicator   "󰉈 "
-            command_ubectx_command  "time"
-            command_ubectx_format   "#[fg=#6C7086,italic] {stdout}"
-            command_ubectx_interval "2"
+                tab_normal   "#[fg=#6C7086] [{custom_index}] {name}"
+                tab_active   "#[fg=#9399B2,bold] [{custom_index}] {name}"
 
-            command_kubectx_command  "kubectx -c"
-            command_kubectx_format   "#[fg=#6C7086,italic] {stdout}"
-            command_kubectx_interval "2"
+                tab_fullscreen_indicator "□ "
+                tab_floating_indicator   "󰉈 "
 
-            command_kubens_command  "kubens -c"
-            command_kubens_format   "#[fg=#6C7086]{stdout} "
-            command_kubens_interval "2"
-
-            datetime          "#[fg=#9399B2] {format} "
-            datetime_format   "%A, %d %b %Y %H:%M"
-            datetime_timezone "Europe/Berlin"
+                datetime        "#[fg=#6C7086,bold] {format} "
+                datetime_format "%H:%M"
+                datetime_timezone "Europe/Berlin"
+            }
         }
     }
 }

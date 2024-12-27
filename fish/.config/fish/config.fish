@@ -122,6 +122,10 @@ export FZF_DEFAULT_OPTS='--layout=reverse'
 
 envsource ~/.aireal.env
 
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH
+
 # functions
 function git_commit_or_git_checkout
     set -l cmd "git commit"
@@ -142,6 +146,17 @@ function git_commit_or_git_checkout
     end
 end
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
+function pre_exec_zellij_tab_rename --on-event fish_preexec
+    if set -q ZELLIJ
+        set title (string split ' ' $argv)[1]
+        command nohup zellij action rename-tab $title >/dev/null 2>&1
+    end
+end
+
+function post_exec_zellij_tab_rename --on-event fish_prompt
+    if set -q ZELLIJ && test -z "$argv" && status is-interactive
+        set title 'fish'
+        command nohup zellij action rename-tab $title >/dev/null 2>&1
+    end
+end
+post_exec_zellij_tab_rename
