@@ -5,7 +5,12 @@ set -e
 echo "Pulling latest changes from origin..."
 git pull
 
-latest_tag=$(git tag -l | sort -V | tail -n 1 2>/dev/null)
+latest_tag=$(git tag -l | sort -V | tail -n 1 2>/dev/null) # is would be the correct way
+# if [[ $(pwd) == "$HOME/work"* ]]; then
+#     latest_tag=$(git tag -l --sort=-committerdate | head -n 1 | sort -V | tail -n 1 2>/dev/null)
+# else
+#     latest_tag=$(git tag -l | sort -V | tail -n 1 2>/dev/null) # is would be the correct way
+# fi
 
 # If there are no tags yet, start with 0.0.1
 if [ -z "$latest_tag" ]; then
@@ -31,8 +36,13 @@ fi
 echo "Latest tag: $latest_tag"
 echo "New tag: $new_tag"
 
-# If none interactive juse confirm. What could possibly go wrong...
-read -p "Do you want to create and push tag $new_tag? (y/n): " confirm || confirm=y
+if [[ "$1" == "--force" || "$1" == "-f" ]]; then
+    confirm="y"
+else
+    # If none interactive just confirm. What could possibly go wrong...
+    read -p "Do you want to create and push tag $new_tag? (y/n): " confirm || confirm=y
+fi
+
 if [[ $confirm =~ ^[Yy]$ ]]; then
     git tag "$new_tag"
     git push --tags

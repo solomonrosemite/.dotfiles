@@ -150,6 +150,7 @@ bash -c 'syncthing &>/dev/null &'
 export FZF_DEFAULT_OPTS='--layout=reverse'
 
 envsource ~/.aireal.env
+envsource ~/.personal.env
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
