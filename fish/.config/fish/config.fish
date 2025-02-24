@@ -27,6 +27,32 @@ alias nd="cd /mnt/c/Users/Jesse/Pictures/Walli/.drawings"
 alias nws="cd $win_user_path/AppData/Roaming/Microsoft/Windows/Start\ Menu/Programs/Startup/"
 alias ny="cd $win_user_path/.yasb/"
 
+# ai stuff
+alias ai='aichat'
+function cl
+    echo "$argv - model: claude:claude-3-5-sonnet-latest:" >> ~/.ai/outputs.md
+    aichat -m claude:claude-3-5-sonnet-latest $argv | tee -a ~/.ai/outputs.md
+    printf "\n---\n" >> ~/.ai/outputs.md
+end
+
+function sam
+    echo "$argv - model: openai:gpt-4o-mini:" >> ~/.ai/outputs.md
+    aichat -m claude:claude-3-5-sonnet-latest $argv | tee -a ~/.ai/outputs.md
+    printf "\n---\n" >> ~/.ai/outputs.md
+end
+
+function oa
+    echo "$argv - model: openai:gpt-4o-mini:" >> ~/.ai/outputs.md
+    aichat -m claude:claude-3-5-sonnet-latest $argv | tee -a ~/.ai/outputs.md
+    printf "\n---\n" >> ~/.ai/outputs.md
+end
+
+function pp
+    echo "$argv - model: perplexity:llama-3.1-sonar-huge-128k-online:" >> ~/.ai/outputs.md
+    aichat -m perplexity:llama-3.1-sonar-huge-128k-online $argv | tee -a ~/.ai/outputs.md
+    printf "\n---\n" >> ~/.ai/outputs.md
+end
+
 alias d='docker'
 alias dp='docker ps'
 alias ds='docker stop'
@@ -66,6 +92,9 @@ alias gap='git add -p'
 alias gaa='git add -A'
 alias gdd='git diff'
 alias gdc='git diff --cached'
+
+
+alias glow='glow -p'
 
 alias a='~/.dotfiles/scripts/.config/scripts/authy.sh'
 alias auth='~/.dotfiles/scripts/.config/scripts/authy.sh'
