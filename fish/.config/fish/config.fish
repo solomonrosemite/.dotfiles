@@ -177,8 +177,11 @@ end
 
 function pre_exec_zellij_tab_rename --on-event fish_preexec
     if set -q ZELLIJ
-        set title (string split ' ' $argv)[1]
-        command nohup zellij action rename-tab $title >/dev/null 2>&1
+        set title (string split ' ' $argv)[1..-1]
+        if test (string length "$argv") -gt 20
+            set title (string split ' ' $argv)[1]
+        end
+        command nohup zellij action rename-tab "$title" >/dev/null 2>&1
     end
 end
 

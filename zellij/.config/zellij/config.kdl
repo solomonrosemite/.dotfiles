@@ -1,6 +1,7 @@
 // If you'd like to override the default keybindings completely, be sure to change "keybinds" to "keybinds clear-defaults=true"
 keybinds {
     normal {
+        unbind "Ctrl s"
         unbind "Ctrl p"
         unbind "Ctrl q"
         unbind "Ctrl o"
@@ -25,11 +26,13 @@ keybinds {
 
         bind "" { MoveFocus "Left"; }
         bind "" { MoveFocus "Right"; }
+        bind "" { MoveFocus "Up"; }
+        bind "" { MoveFocus "Down"; }
 
         bind "" { MoveTab "Left"; }
         bind "" { MoveTab "Right"; }
 
-        bind "" { NewPane; SwitchToMode "Normal"; }
+        bind "" { SwitchToMode "Pane"; }
 
         bind "" { NewTab; }
         bind "" { Detach; }
@@ -37,9 +40,8 @@ keybinds {
         bind "" {
             LaunchOrFocusPlugin "session-manager" {
                 floating true
-                move_to_focused_tab true
             };
-            SwitchToMode "Normal"
+            // SwitchToMode "Normal"
         }
     }
     locked {
@@ -225,8 +227,6 @@ keybinds {
         }
     }
 }
-
-theme "catppuccin"
 
 plugins {
     tab-bar location="zellij:tab-bar"
