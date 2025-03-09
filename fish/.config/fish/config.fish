@@ -110,7 +110,7 @@ alias la='eza -hla'
 alias lt='eza --tree'
 alias less='bat --paging=always'
 alias task='go-task'
-alias vim='/usr/sbin/nvim'
+alias vim='nvim'
 
 alias nvm='fnm'
 alias r='trash'
@@ -120,8 +120,8 @@ alias hd="cd $win_user_path/Downloads"
 alias s='source ~/.config/fish/config.fish'
 alias take 'function __take; mkdir -p $argv; cd $argv; end; __take'
 
-alias v='/usr/sbin/nvim .'
-alias vv='/usr/sbin/nvim -c "Codeium Disable" .'
+alias v='nvim .'
+alias vv='nvim -c "Codeium Disable" .'
 
 alias wts="sh $win_user_path/.win.dotfiles/scripts/win-terminal-background.sh --select"
 

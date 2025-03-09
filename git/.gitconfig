@@ -19,7 +19,6 @@
 
 [alias]
   dt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\""
-  dtt = "! args=$@; shift $#; nvim -c \"DiffviewOpen $args\" -c \"Codeium Disable\""
 
 [core]
   editor = nvim
