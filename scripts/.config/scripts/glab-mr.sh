@@ -3,7 +3,7 @@
 USERNAME="${USERNAME:-"solomon"}"
 
 set -euo pipefail
-TMP_FILE=$(mktemp --suffix="-COMMIT_EDITMSG")
+TMP_FILE=$(mktemp "${TMPDIR:-/tmp}/-COMMIT_EDITMSG")
 
 cleanup() {
     rm -f "$TMP_FILE"
@@ -22,7 +22,7 @@ nvim -c "set filetype=gitcommit" -c "set nowritebackup" "$TMP_FILE"
 # nvim -c "set filetype=gitcommit" -c "startinsert" -c "set nowritebackup" "$TMP_FILE"
 
 MR_TITLE=$(head -n 1 < "$TMP_FILE")
-MR_DESCRIPTION=$(sed -n '1!{/^#/q;p}' "$TMP_FILE" | sed '/^$/d')
+MR_DESCRIPTION=$(sed -e '1d' -e '/^#/,$d' "$TMP_FILE" | sed '/^$/d')
 
 if [[ -z "$MR_TITLE" ]]; then
     echo "Merge request creation canceled."

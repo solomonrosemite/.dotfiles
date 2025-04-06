@@ -133,6 +133,9 @@ set fish_user_paths "$HOME/.nix-profile/bin/" $fish_user_paths
 set fish_user_paths "$HOME/.go/bin/" $fish_user_paths
 set fish_user_paths "$HOME/.local/bin/" $fish_user_paths
 set fish_user_paths "$HOME/.cargo/bin/" $fish_user_paths
+set fish_user_paths "$HOME/.local/share/fnm" $fish_user_paths
+set fish_user_paths "/opt/homebrew/bin/" $fish_user_paths
+set fish_user_paths "/opt/homebrew/opt/openjdk/bin" $fish_user_paths
 set -gx GOPATH "$HOME/.go/"
 
 # pnpm
@@ -142,7 +145,9 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
+fnm env | source
 starship init fish | source
+eval (/opt/homebrew/bin/brew shellenv)
 
 # opam configuration
 source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
