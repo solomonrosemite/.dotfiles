@@ -1,0 +1,162 @@
+ralt+rcmd-q : skhd -k "ralt + q"
+
+### zen ###
+rcmd-q [
+    "zen": skhd -k "ctrl - q"
+]
+### zen end ###
+
+### aerospace ###
+
+# All possible keys:
+#-Letters.        a, b, c, ..., z
+#-Numbers.        0, 1, 2, ..., 9
+#-Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
+#-F-keys.         f1, f2, ..., f20
+#-Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon,
+#                   backtick, leftSquareBracket, rightSquareBracket, space, enter, esc,
+#                   backspace, tab
+#-Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
+#                   keypadMinus, keypadMultiply, keypadPlus
+#-Arrows.         left, down, up, right
+
+# All possible modifiers: cmd, alt, ctrl, shift
+
+# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+lalt-0x2B : aerospace layout accordion horizontal vertical # 0x2B is comma
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+lalt-h : aerospace focus left
+lalt-j : aerospace focus down
+lalt-k : aerospace focus up
+lalt-l : aerospace focus right
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move
+lalt+shift-h : aerospace move left
+lalt+shift-j : aerospace move down
+lalt+shift-k : aerospace move up
+lalt+shift-l : aerospace move right
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#resize
+# lalt-minus : aerospace resize smart -50
+# lalt-equal : aerospace resize smart +50
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+# In your config, you can drop workspace bindings that you dont need
+lalt-a : aerospace workspace A
+lalt-d : aerospace workspace D
+lalt-e : aerospace workspace E
+lalt-f : aerospace workspace F
+lalt-g : aerospace workspace G
+lalt-q : aerospace workspace Q
+lalt-r : aerospace workspace R
+lalt-s : aerospace workspace S
+lalt-w : aerospace workspace W
+lalt-y : aerospace workspace Y
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+lalt+shift-a : aerospace move-node-to-workspace A
+lalt+shift-d : aerospace move-node-to-workspace D
+lalt+shift-e : aerospace move-node-to-workspace E
+lalt+shift-f : aerospace move-node-to-workspace F
+lalt+shift-g : aerospace move-node-to-workspace G
+lalt+shift-q : aerospace move-node-to-workspace Q
+lalt+shift-r : aerospace move-node-to-workspace R
+lalt+shift-s : aerospace move-node-to-workspace S
+lalt+shift-w : aerospace move-node-to-workspace W
+lalt+shift-x : aerospace move-node-to-workspace X
+lalt+shift-y : aerospace move-node-to-workspace Y
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
+# lalt-tab : aerospace workspace-back-and-forth
+# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
+# lalt-shift-tab : aerospace move-workspace-to-monitor --wrap-around next
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+# lalt-shift-semicolon : aerospace mode service
+
+### aerospace end ###
+
+### wezterm ###
+
+
+## zellij
+
+# well - this is a bit awkward, but we are just not going to use q, because it conflicts with ralt - q
+# german keybaord issues
+# ralt-q [
+#     "wezterm": skhd -k "ctrl + alt - q"
+# ]
+ralt-w [
+    "wezterm": skhd -k "ctrl + alt - w"
+]
+ralt-e [
+    "wezterm": skhd -k "ctrl + alt - e"
+]
+ralt-r [
+    "wezterm": skhd -k "ctrl + alt - r"
+]
+
+ralt-y [
+    "wezterm": skhd -k "ctrl + alt - y"
+]
+ralt-x [
+    "wezterm": skhd -k "ctrl + alt - x"
+]
+ralt-c [
+    "wezterm": skhd -k "ctrl + alt - c"
+]
+ralt-v [
+    "wezterm": skhd -k "ctrl + alt - v"
+]
+
+ralt-a [
+    "wezterm": skhd -k "ctrl + alt - a"
+]
+ralt-s [
+    "wezterm": skhd -k "ctrl + alt - s"
+]
+ralt-d [
+    "wezterm": skhd -k "ctrl + alt - d"
+]
+ralt-f [
+    "wezterm": skhd -k "ctrl + alt - f"
+]
+
+ralt-h [
+    "wezterm": skhd -k "f4"
+]
+ralt-l [
+    "wezterm": skhd -k "f5"
+]
+ralt-j [
+    "wezterm": skhd -k "f6"
+]
+ralt-k [
+    "wezterm": skhd -k "f7"
+]
+
+ralt+shift-h [
+    "wezterm": skhd -k "f8"
+]
+ralt+shift-l [
+    "wezterm": skhd -k "f9"
+]
+
+ralt-n [
+    "wezterm": skhd -k "ctrl + alt - n"
+]
+ralt-d [
+    "wezterm": skhd -k "ctrl + alt - d"
+]
+ralt-o [
+    "wezterm": skhd -k "ctrl + alt - o"
+]
+ralt-p [
+    "wezterm": skhd -k "ctrl + alt - p"
+]
+# zellij end
+
+### end ###
