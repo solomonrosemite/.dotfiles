@@ -2,6 +2,13 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+envsource ~/.aireal.env
+envsource ~/.personal.env
+
+if not set -q OPEN_DIR_DEPTH
+    set -gx OPEN_DIR_DEPTH 2
+end
+
 # set win_user_path (readlink -e /mnt/c/Users/{solomon,Jesse}/ | head -1)
 # set h $win_user_path
 # set hd "$win_user_path/Donwloads"
@@ -63,7 +70,7 @@ alias dv='docker volume'
 alias dvl='docker volume ls'
 alias dvr='docker volume rm'
 
-alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh -n 0 -d 2 "$HOME/Documents/_docs/" "$HOME/Downloads/" "$HOME/Movies/" "$HOME/personal/" "$HOME/work/" ) && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
+alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh -n 0 -d "$OPEN_DIR_DEPTH" "$HOME/Documents/_docs/" "$HOME/Downloads/" "$HOME/Movies/" "$HOME/personal/" "$HOME/work/" ) && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
 
 alias ffd='_fzf_search_directory'
 alias ffh='_fzf_search_history'
@@ -161,9 +168,6 @@ source ~/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
 bash -c 'syncthing &>/dev/null &'
 export FZF_DEFAULT_OPTS='--layout=reverse'
 export VISUAL=nvim
-
-envsource ~/.aireal.env
-envsource ~/.personal.env
 
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
