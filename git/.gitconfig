@@ -1,13 +1,14 @@
 # Personal gitconfig
-[includeIf "gitdir:~/.dotfiles/"]
+[includeIf "gitdir:~/personal/"]
   path = ~/personal/.gitconfig-personal
-[includeIf "gitdir:~/dev/"]
+[includeIf "gitdir:/mnt/c/Users/*/"]
+  path = ~/personal/.gitconfig-personal
+
+[includeIf "gitdir:~/.dotfiles/"]
   path = ~/personal/.gitconfig-personal
 [includeIf "gitdir:~/personal/"]
   path = ~/personal/.gitconfig-personal
-[includeIf "gitdir:~/.config/nvim/"]
-  path = ~/personal/.gitconfig-personal
-[includeIf "gitdir:/mnt/c/Users/*/"]
+[includeIf "gitdir:~/.config/"]
   path = ~/personal/.gitconfig-personal
 
 # Because of the way go get works, we also need to set this in the global gitconfig
