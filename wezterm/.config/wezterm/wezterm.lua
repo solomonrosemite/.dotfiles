@@ -77,6 +77,12 @@ config.keys = {
 	-- { key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 	-- terminal
 	{
+		key = "c",
+		mods = "SUPER",
+		action = act.SendKey({ key = "c", mods = "CTRL" }),
+	},
+
+	{
 		key = "l",
 		mods = "SUPER",
 		action = act.SendKey({ key = "l", mods = "CTRL" }),
@@ -102,6 +108,11 @@ config.keys = {
 		key = "r",
 		mods = "SUPER",
 		action = act.SendKey({ key = "r", mods = "CTRL" }),
+	},
+	{
+		key = "i",
+		mods = "SUPER",
+		action = act.SendKey({ key = "i", mods = "CTRL" }),
 	},
 	{
 		key = "o",
