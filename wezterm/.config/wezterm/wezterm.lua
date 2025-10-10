@@ -76,52 +76,53 @@ config.background = {
 config.keys = {
 	-- { key = "v", mods = "CTRL", action = act.PasteFrom("Clipboard") },
 	-- terminal
-	-- {
-	-- 	key = "c",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "c", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "l",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "l", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "d",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "d", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "z",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "z", mods = "CTRL" }),
-	-- },
+	{
+		key = "c",
+		mods = "SUPER",
+		action = act.SendKey({ key = "c", mods = "CTRL" }),
+	},
+	{
+		key = "l",
+		mods = "SUPER",
+		action = act.SendKey({ key = "l", mods = "CTRL" }),
+	},
+	{
+		key = "d",
+		mods = "SUPER",
+		action = act.SendKey({ key = "d", mods = "CTRL" }),
+	},
+	{
+		key = "z",
+		mods = "SUPER",
+		action = act.SendKey({ key = "z", mods = "CTRL" }),
+	},
+
 	-- neovim
-	-- {
-	-- 	key = "q",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "q", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "r",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "r", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "i",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "i", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "o",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "o", mods = "CTRL" }),
-	-- },
-	-- {
-	-- 	key = "w",
-	-- 	mods = "SUPER",
-	-- 	action = act.SendKey({ key = "w", mods = "CTRL" }),
-	-- },
+	{
+		key = "q",
+		mods = "SUPER",
+		action = act.SendKey({ key = "q", mods = "CTRL" }),
+	},
+	{
+		key = "r",
+		mods = "SUPER",
+		action = act.SendKey({ key = "r", mods = "CTRL" }),
+	},
+	{
+		key = "i",
+		mods = "SUPER",
+		action = act.SendKey({ key = "i", mods = "CTRL" }),
+	},
+	{
+		key = "o",
+		mods = "SUPER",
+		action = act.SendKey({ key = "o", mods = "CTRL" }),
+	},
+	{
+		key = "w",
+		mods = "SUPER",
+		action = act.SendKey({ key = "w", mods = "CTRL" }),
+	},
 }
 
 config.window_padding = {

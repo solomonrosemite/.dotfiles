@@ -56,6 +56,9 @@ lalt-s : aerospace workspace S
 lalt-w : aerospace workspace W
 lalt-y : aerospace workspace Y
 
+lalt-c : aerospace close
+ralt-c : aerospace close
+
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 lalt+shift-a : aerospace move-node-to-workspace A
 lalt+shift-d : aerospace move-node-to-workspace D
@@ -85,40 +88,40 @@ lalt+shift-y : aerospace move-node-to-workspace Y
 
 ## obsidian
 
-cmd-c [
-    "wezterm": skhd -k "ctrl - c"
-    "Obsidian": skhd -k "ctrl - c"
-]
+# cmd-c [
+#     # "wezterm": skhd -k "ctrl - c"
+#     # "Obsidian": skhd -k "ctrl - c"
+# ]
 cmd-l [
-    "wezterm": skhd -k "ctrl - l"
+    # "wezterm": skhd -k "ctrl - l"
     "Obsidian": skhd -k "ctrl - l"
 ]
 cmd-d [
-    "wezterm": skhd -k "ctrl - d"
+    # "wezterm": skhd -k "ctrl - d"
     "Obsidian": skhd -k "ctrl - d"
 ]
 cmd-z [
-    "wezterm": skhd -k "ctrl - z"
+    # "wezterm": skhd -k "ctrl - z"
     "Obsidian": skhd -k "ctrl - z"
 ]
 cmd-q [
-    "wezterm": skhd -k "ctrl - q"
+    # "wezterm": skhd -k "ctrl - q"
     "Obsidian": skhd -k "ctrl - q"
 ]
 cmd-r [
-    "wezterm": skhd -k "ctrl - r"
+    # "wezterm": skhd -k "ctrl - r"
     "Obsidian": skhd -k "ctrl - r"
 ]
 cmd-i [
-    "wezterm": skhd -k "ctrl - i"
+    # "wezterm": skhd -k "ctrl - i"
     "Obsidian": skhd -k "ctrl - i"
 ]
 cmd-o [
-    "wezterm": skhd -k "ctrl - o"
+    # "wezterm": skhd -k "ctrl - o"
     "Obsidian": skhd -k "ctrl - o"
 ]
 cmd-w [
-    "wezterm": skhd -k "ctrl - w"
+    # "wezterm": skhd -k "ctrl - w"
     "Obsidian": skhd -k "ctrl - w"
 ]
 
