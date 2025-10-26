@@ -9,7 +9,7 @@ fi
 # https://www.reddit.com/r/MacOS/comments/15i025e/comment/juvq2ul
 
 currenttime=$(date +%H:%M)
-if [[ "$currenttime" > "16:00" ]] || [[ "$currenttime" < "07:00" ]]; then
+if [[ "$currenttime" > "15:59" ]] || [[ "$currenttime" < "07:00" ]]; then
     osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to true'
 else
     osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to false'
