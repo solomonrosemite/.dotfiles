@@ -123,6 +123,11 @@ config.keys = {
 		mods = "SUPER",
 		action = act.SendKey({ key = "w", mods = "CTRL" }),
 	},
+	{
+		key = "n",
+		mods = "SUPER",
+		action = act.SendKey({ key = "n", mods = "CTRL" }),
+	},
 }
 
 config.window_padding = {
