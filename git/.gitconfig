@@ -1,6 +1,8 @@
 # Personal gitconfig
 [includeIf "gitdir:~/personal/"]
   path = ~/personal/.gitconfig-personal
+[includeIf "gitdir:~/projects/"]
+  path = ~/personal/.gitconfig-personal
 [includeIf "gitdir:/mnt/c/Users/*/"]
   path = ~/personal/.gitconfig-personal
 
