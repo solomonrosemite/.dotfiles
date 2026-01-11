@@ -28,7 +28,7 @@ if echo "$refs" | grep -q "^$branch$"; then
 
         echo "$new_path"
         exit 42
-    elif [ -d .git ]; then
+    else
         git checkout "$branch"
     fi
     exit 0
