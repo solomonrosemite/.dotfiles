@@ -177,23 +177,28 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # functions
 function git_commit_or_git_checkout
-    set -l cmd "git commit"
     set -l found_m false
     for arg in $argv
         if test "$arg" = "-m"
-            set cmd "$cmd -m"
             set found_m true
-        else
-            set cmd "$cmd \"$arg\""
+            break
         end
     end
 
     if test "$found_m" = "false"
-      sh ~/.dotfiles/scripts/.config/scripts/git_checkout.sh
+        set -l dir (sh ~/.dotfiles/scripts/.config/scripts/git_checkout.sh)
+        set -l exit_code $status
+
+        if test $exit_code -eq 42
+            if test -n "$dir" -a -d "$dir"
+                cd "$dir"
+            end
+        end
     else
-        eval $cmd
+        git commit $argv
     end
 end
+
 
 function pre_exec_zellij_tab_rename --on-event fish_preexec
     if set -q ZELLIJ

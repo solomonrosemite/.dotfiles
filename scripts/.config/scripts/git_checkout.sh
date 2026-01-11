@@ -14,7 +14,19 @@ if [ -z "$q" ] && [ -z "$branch" ]; then
 fi
 
 if echo "$refs" | grep -q "^$branch$"; then
-    git checkout $branch
+    worktree_path=$(git worktree list --porcelain | awk -v branch="$branch" '
+        /^worktree / { path = substr($0, 10) }
+        /^branch / { if (substr($0, 8) == "refs/heads/" branch) { print path; exit } }
+    ')
+
+    if [ -n "$worktree_path" ]; then
+        echo "$worktree_path"
+        exit 42 # for fish to know it has to cd
+    elif [ -d .git ]; then
+        git checkout "$branch"
+    else
+        echo "not a git repo (or unusual setup)"
+    fi
     exit 0
 fi
 
