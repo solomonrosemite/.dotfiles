@@ -10,8 +10,7 @@ is_worktree() {
     return 1
 }
 
-# Worktree root: parent of first worktree in list (the main one)
-worktree_root() { dirname "$(git worktree list --porcelain | head -1 | cut -d' ' -f2)"; }
+worktree_root() { git rev-parse --git-common-dir 2>/dev/null; }
 
 refs=$(git for-each-ref --format='%(refname:short)' | tr ' ' '\n' | sed -e 's/^origin\///' -e 's/^origin//' | sort -ur)
 gitlog="git log --abbrev-commit --decorate --format=format:'%C(auto)%h %C(black)%C(bold)(%cr)%C(reset)%C(auto)%d %C(reset)%C(white)%s %C(dim white)- %an %C(reset)'"
@@ -27,7 +26,6 @@ if echo "$refs" | grep -q "^$branch$"; then
     if is_worktree; then
         new_path="$(worktree_root)/$branch"
 
-        git worktree add "$new_path" "$branch" >&2
         echo "$new_path"
         exit 42
     elif [ -d .git ]; then
@@ -39,7 +37,7 @@ fi
 # new branch
 if is_worktree; then
     new_path="$(worktree_root)/$q"
-    git worktree add "$new_path" -b "$q" >&2
+    git worktree add "$new_path" -b "$q" >/dev/null
     echo "$new_path"
     exit 42
 else
