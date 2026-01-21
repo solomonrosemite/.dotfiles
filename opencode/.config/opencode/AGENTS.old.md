@@ -32,6 +32,3 @@
 
 - branches should be named after the issue they are solving (e.g. (feature/fix)/ROS-1234-description)
 - when merging, use "squash and merge" to keep the commit history clean, unless explicitly asked to do otherwise
-
-## Plans
-- At the end of each plan, give me a list of unresolved questions to answer, if any

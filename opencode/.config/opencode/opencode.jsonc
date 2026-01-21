@@ -1,10 +1,21 @@
 {
     "$schema": "https://opencode.ai/config.json",
     "default_agent": "plan",
-    "model": "minimax/minimax-m2.1",
-    // "small_model": "anthropic/claude-haiku-4-5",
+    "model": "openai/gpt-5.2-codex",
+    "provider": {
+        "openai": {
+            "models": {
+                "gpt-5.2-codex": {
+                    "options": {
+                        "reasoningEffort": "xhigh"
+                    }
+                }
+            }
+        },
+    },
     "enabled_providers": [
-        "openrouter"
+        "openrouter",
+        "openai",
     ],
     "permission": {
         "question": "deny", // just dont like em. ask me in the chat
@@ -34,7 +45,6 @@
         "linear": {
             "type": "remote",
             "url": "https://mcp.linear.app/mcp",
-            "enabled": true,
             "headers": {
                 "Authorization": "Bearer {env:LINEAR_API_KEY}"
             }
@@ -45,33 +55,55 @@
             "headers": {
                 "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
             },
-            "enabled": true
-        }
+        },
+        "perplexity": {
+            "type": "local",
+            "timeout": 60000000,
+            "command": [
+                "npx",
+                "-y",
+                "@perplexity-ai/mcp-server"
+            ],
+            "environment": {
+                "PERPLEXITY_API_KEY": "{env:PERPLEXITY_API_KEY}"
+            }
+        },
     },
     // Disabling all MCP servers and exclusively making it available via sub-agents forces open code to
     // (1) use these sub-agents, which circumvents the problem of the agent being overwhelmed by too many different MCP tools and
     // (2) also prevents filling up the main agent's context window.
     // (the * wildcard for some reason is very important. without it does not get disabled)
     "tools": {
-        "linear*": false,
-        "context7*": false
+        // "linear*": false,
+        "context7*": false,
+        "perplexity*": false,
     },
     "agent": {
-        "linear": {
-            "description": "Linear ticket management",
-            "mode": "subagent",
-            "prompt": "You have access to linear ticket management and often get asked to retrieve or do something in Linear. Using the tools available to you.",
-            "tools": {
-                "linear*": true,
-                "bash": false
-            }
-        },
+        // "linear": {
+        //     "description": "Linear ticket management",
+        //     "mode": "subagent",
+        //     "prompt": "You have access to linear ticket management and often get asked to retrieve or do something in Linear. Using the tools available to you.",
+        //     "tools": {
+        //         "linear*": true,
+        //         "bash": false
+        //     }
+        // },
         "context7": {
             "description": "Fetch up to date documentation from Context7",
             "mode": "subagent",
             "prompt": "Get the latest documentation for various projects and libraries.",
             "tools": {
                 "context7*": true,
+                "bash": false
+            }
+        },
+        "perplexity": {
+            "description": "Do complex web searches or deep research.",
+            "mode": "subagent",
+            "prompt": "Do complex web searches or deep research.",
+            "tools": {
+                "perplexity_perplexity_research*": true,
+                "perplexity_perplexity_search*": true,
                 "bash": false
             }
         },
@@ -87,6 +119,7 @@
         "plan": {
             "mode": "primary",
             "color": "#9c76ca",
+            // "model": "openrouter/google/gemini-3-pro-preview",
             "tools": {
                 "write": false,
                 "edit": false,
@@ -99,9 +132,11 @@
         },
     },
     "keybinds": {
-        "leader": "cmd+y",
-        "session_child_cycle": "right",
-        "session_child_cycle_reverse": "left",
-        "session_parent": "up",
+        "leader": "ctrl+o",
+        "session_child_cycle": "<leader>l",
+        "session_child_cycle_reverse": "<leader>h",
+        "session_parent": "<leader>k",
+        "messages_toggle_conceal": "none",
+        "session_list": "none"
     }
 }
