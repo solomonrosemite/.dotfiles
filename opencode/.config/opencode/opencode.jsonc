@@ -19,6 +19,7 @@
     ],
     "permission": {
         "question": "deny", // just dont like em. ask me in the chat
+        "external_directory": "allow",
         "bash": {
             "*": "allow",
             "rm": "deny",
@@ -137,6 +138,7 @@
         "session_child_cycle_reverse": "<leader>h",
         "session_parent": "<leader>k",
         "messages_toggle_conceal": "none",
-        "session_list": "none"
+        "session_list": "none",
+        "variant_cycle": "<leader>c",
     }
 }
