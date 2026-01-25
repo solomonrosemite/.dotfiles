@@ -21,25 +21,41 @@ branch=$(echo "$query" | tail -1)
 
 [ -z "$q" ] && [ -z "$branch" ] && exit 0
 
-# existing branch selected
+branch_exists=false
 if echo "$refs" | grep -q "^$branch$"; then
-    if is_worktree; then
-        new_path="$(worktree_root)/$branch"
+    branch_exists=true
+fi
 
-        echo "$new_path"
-        exit 42
-    else
-        git checkout "$branch"
+if is_worktree; then
+    target="$q"
+    if [ "$branch_exists" = true ]; then
+        target="$branch"
     fi
+
+    existing_path=""
+    if [ -n "$branch" ]; then
+        existing_path="$(git worktree list --porcelain | awk -v branch="refs/heads/$branch" '
+            $1 == "worktree" { path = $2 }
+            $1 == "branch" && $2 == branch { print path; exit }
+        ')"
+    fi
+
+    if [ -n "$existing_path" ] && [ -d "$existing_path" ]; then
+        echo "$existing_path"
+        exit 0
+    fi
+
+    new_path="$(worktree_root)/$target"
+    if ! git worktree add "$new_path" "$target" >/dev/null 2>&1; then
+        git worktree add "$new_path" -b "$target" >/dev/null
+    fi
+    echo "$new_path"
     exit 0
 fi
 
-# new branch
-if is_worktree; then
-    new_path="$(worktree_root)/$q"
-    git worktree add "$new_path" -b "$q" >/dev/null
-    echo "$new_path"
-    exit 42
-else
-    git checkout -b "$q"
+if [ "$branch_exists" = true ]; then
+    git checkout "$branch"
+    exit 0
 fi
+
+git checkout -b "$q"

@@ -72,7 +72,7 @@ alias dv='docker volume'
 alias dvl='docker volume ls'
 alias dvr='docker volume rm'
 
-alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh -n 0 -d "$OPEN_DIR_DEPTH" "$HOME/Documents/_docs/" "$HOME/Downloads/" "$HOME/Movies/" "$HOME/personal/" "$HOME/work/" "$HOME/projects/") && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
+alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh -n 0 -d "$OPEN_DIR_DEPTH" "$OPEN_DIR_PATHS") && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
 
 alias ffd='_fzf_search_directory'
 alias ffh='_fzf_search_history'
@@ -81,7 +81,6 @@ alias ffp='_fzf_search_processes'
 alias fm='fzf-make'
 
 alias gs='git status'
-alias gsw='git switch -'
 alias gc='git_commit_or_git_checkout'
 alias gco='git checkout'
 alias gcc='git commit'
@@ -177,6 +176,16 @@ set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
 
 # functions
+function gsw
+    set -l git_dir (git rev-parse --git-dir 2>/dev/null)
+    if test -n "$git_dir"; and string match -q "*worktrees*" -- "$git_dir"
+        cd -
+        return
+    end
+
+    git switch -
+end
+
 function git_commit_or_git_checkout
     set -l found_m false
     for arg in $argv
@@ -190,10 +199,8 @@ function git_commit_or_git_checkout
         set -l dir (sh ~/.dotfiles/scripts/.config/scripts/git_checkout.sh)
         set -l exit_code $status
 
-        if test $exit_code -eq 42
-            if test -n "$dir" -a -d "$dir"
-                cd "$dir"
-            end
+        if test $exit_code -eq 0 -a -n "$dir" -a -d "$dir"
+            cd "$dir"
         end
     else
         git commit $argv

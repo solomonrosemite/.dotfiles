@@ -10,9 +10,16 @@ parser_definition() {
 }
 eval "$(getoptions parser_definition) exit 1"
 
+
 # Function to recursively find directories, stopping at git repositories
 find_dirs_stop_at_git() {
-    local search_dirs=("$@")
+    local search_dirs=()
+    if [[ $# -eq 1 ]]; then
+        local IFS=$' \t\n'
+        read -r -a search_dirs <<< "$1"
+    else
+        search_dirs=("$@")
+    fi
     local current_depth=1
     local found_dirs=()
 
