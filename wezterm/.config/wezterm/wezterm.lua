@@ -38,10 +38,10 @@ config.background = {
 		source = {
 			File = scheme_for_appearance(
 				get_appearance(),
-				"/Users/solomon/Pictures/.drawings/zzz/colors/catppuccin-latte-light.png",
-				"/Users/solomon/Pictures/.drawings/zzz/colors/catppuccin-mocha-dark.png"
-				-- "C:/Users/Jesse/Pictures/Walli/.drawings/zzz/colors/vs-code-light.png",
-				-- "C:/Users/Jesse/Pictures/Walli/.drawings/zzz/colors/vs-code.png"
+				"/Users/solomon/Pictures/drawings/zzz/colors/catppuccin-latte-light.png",
+				"/Users/solomon/Pictures/drawings/zzz/colors/catppuccin-mocha-dark.png"
+				-- "C:/Users/Jesse/Pictures/Walli/drawings/zzz/colors/vs-code-light.png",
+				-- "C:/Users/Jesse/Pictures/Walli/drawings/zzz/colors/vs-code.png"
 			),
 		},
 		attachment = "Fixed",
