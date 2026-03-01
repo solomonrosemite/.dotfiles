@@ -1,0 +1,5 @@
+*/5 * * * * ~/.config/scripts/mac/auto_dark_mode_schedule.sh
+
+# Zen Browser Profile Backup
+# (skips if backup already exists for today)
+*/30 * * * * ~/.dotfiles/scripts/.config/scripts/mac/zen-backup.sh
