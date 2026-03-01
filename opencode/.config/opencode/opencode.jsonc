@@ -1,144 +1,143 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "default_agent": "plan",
-    "model": "openai/gpt-5.2-codex",
-    "provider": {
-        "openai": {
-            "models": {
-                "gpt-5.2-codex": {
-                    "options": {
-                        "reasoningEffort": "xhigh"
-                    }
-                }
-            }
-        },
-    },
-    "enabled_providers": [
-        "openrouter",
-        "openai",
-    ],
-    "permission": {
-        "question": "deny", // just dont like em. ask me in the chat
-        "external_directory": "allow",
-        "bash": {
-            "*": "allow",
-            "rm": "deny",
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "openai": {
+      "models": {
+        "gpt-5.2-codex": {
+          "options": {
+            "reasoningEffort": "xhigh"
+          }
         }
+      }
     },
-    // "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"]
-    "mcp": {
-        "augment-context-engine": {
-            "type": "local",
-            "command": [
-                "auggie",
-                "--mcp"
-            ],
-            "enabled": false
-        },
-        "orchestrator": {
-            "type": "remote",
-            "enabled": false,
-            "url": "http://localhost:3000/mcp",
-            "headers": {
-                "Authorization": "Bearer abc-solo"
-            }
-        },
-        "linear": {
-            "type": "remote",
-            "url": "https://mcp.linear.app/mcp",
-            "headers": {
-                "Authorization": "Bearer {env:LINEAR_API_KEY}"
-            }
-        },
-        "context7": {
-            "type": "remote",
-            "url": "https://mcp.context7.com/mcp",
-            "headers": {
-                "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
-            },
-        },
-        "perplexity": {
-            "type": "local",
-            "timeout": 60000000,
-            "command": [
-                "npx",
-                "-y",
-                "@perplexity-ai/mcp-server"
-            ],
-            "environment": {
-                "PERPLEXITY_API_KEY": "{env:PERPLEXITY_API_KEY}"
-            }
-        },
-    },
-    // Disabling all MCP servers and exclusively making it available via sub-agents forces open code to
-    // (1) use these sub-agents, which circumvents the problem of the agent being overwhelmed by too many different MCP tools and
-    // (2) also prevents filling up the main agent's context window.
-    // (the * wildcard for some reason is very important. without it does not get disabled)
-    "tools": {
-        // "linear*": false,
-        "context7*": false,
-        "perplexity*": false,
-    },
-    "agent": {
-        // "linear": {
-        //     "description": "Linear ticket management",
-        //     "mode": "subagent",
-        //     "prompt": "You have access to linear ticket management and often get asked to retrieve or do something in Linear. Using the tools available to you.",
-        //     "tools": {
-        //         "linear*": true,
-        //         "bash": false
-        //     }
-        // },
-        "context7": {
-            "description": "Fetch up to date documentation from Context7",
-            "mode": "subagent",
-            "prompt": "Get the latest documentation for various projects and libraries.",
-            "tools": {
-                "context7*": true,
-                "bash": false
-            }
-        },
-        "perplexity": {
-            "description": "Do complex web searches or deep research.",
-            "mode": "subagent",
-            "prompt": "Do complex web searches or deep research.",
-            "tools": {
-                "perplexity_perplexity_research*": true,
-                "perplexity_perplexity_search*": true,
-                "bash": false
-            }
-        },
-        // excerpt from https://opencode.ai/docs/agents/
-        // Temperature values typically range from 0.0 to 1.0:
-        // 0.0-0.2: Very focused and deterministic responses, ideal for code analysis and planning
-        // 0.3-0.5: Balanced responses with some creativity, good for general development tasks
-        // 0.6-1.0: More creative and varied responses, useful for brainstorming and exploration
-        "build": {
-            "mode": "primary",
-            "color": "#52a7fa",
-        },
-        "plan": {
-            "mode": "primary",
-            "color": "#9c76ca",
-            // "model": "openrouter/google/gemini-3-pro-preview",
-            "tools": {
-                "write": false,
-                "edit": false,
-                "bash": false
-            }
-        },
-        "brainstorm": {
-            "temperature": 0.7,
-            // "prompt": "{file:./prompts/creative.txt}"
-        },
-    },
-    "keybinds": {
-        "leader": "ctrl+o",
-        "session_child_cycle": "<leader>l",
-        "session_child_cycle_reverse": "<leader>h",
-        "session_parent": "<leader>k",
-        "messages_toggle_conceal": "none",
-        "session_list": "none",
-        "variant_cycle": "<leader>c",
+  },
+  "enabled_providers": [
+    "openrouter",
+    "openai",
+  ],
+  "permission": {
+    "question": "deny", // just dont like em. ask me in the chat
+    "external_directory": "allow",
+    "bash": {
+      "*": "allow",
+      "rm": "deny",
     }
+  },
+  // "instructions": ["CONTRIBUTING.md", "docs/guidelines.md", ".cursor/rules/*.md"]
+  "mcp": {
+    "augment-context-engine": {
+      "type": "local",
+      "command": [
+        "/opt/homebrew/bin/auggie",
+        "--mcp",
+        "--mcp-auto-workspace"
+      ],
+      "enabled": true
+    },
+    "orchestrator": {
+      "type": "remote",
+      "enabled": false,
+      "url": "http://localhost:3000/mcp",
+      "headers": {
+        "Authorization": "Bearer abc-solo"
+      }
+    },
+    // "linear": {
+    //   "type": "remote",
+    //   "url": "https://mcp.linear.app/mcp",
+    //   "headers": {
+    //     "Authorization": "Bearer {env:LINEAR_API_KEY}"
+    //   }
+    // },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      },
+    },
+    "perplexity": {
+      "type": "local",
+      "timeout": 60000000,
+      "command": [
+        "npx",
+        "-y",
+        "@perplexity-ai/mcp-server"
+      ],
+      "environment": {
+        "PERPLEXITY_API_KEY": "{env:PERPLEXITY_API_KEY}"
+      }
+    },
+  },
+  // Disabling all MCP servers and exclusively making it available via sub-agents forces open code to
+  // (1) use these sub-agents, which circumvents the problem of the agent being overwhelmed by too many different MCP tools and
+  // (2) also prevents filling up the main agent's context window.
+  // (the * wildcard for some reason is very important. without it does not get disabled)
+  // "tools": {
+  //   // "linear*": false,
+  //   "context7*": false,
+  //   "perplexity*": false,
+  // },
+  "agent": {
+    // "linear": {
+    //     "description": "Linear ticket management",
+    //     "mode": "subagent",
+    //     "prompt": "You have access to linear ticket management and often get asked to retrieve or do something in Linear. Using the tools available to you.",
+    //     "tools": {
+    //         "linear*": true,
+    //         "bash": false
+    //     }
+    // },
+    // "context7": {
+    //   "description": "Fetch up to date documentation from Context7",
+    //   "mode": "subagent",
+    //   "prompt": "Get the latest documentation for various projects and libraries.",
+    //   "tools": {
+    //     "context7*": true,
+    //     "bash": false
+    //   }
+    // },
+    // "perplexity": {
+    //   "description": "Do complex web searches or deep research.",
+    //   "mode": "subagent",
+    //   "prompt": "Do complex web searches or deep research.",
+    //   "tools": {
+    //     "perplexity_perplexity_research*": true,
+    //     "perplexity_perplexity_search*": true,
+    //     "bash": false
+    //   }
+    // },
+    // excerpt from https://opencode.ai/docs/agents/
+    // Temperature values typically range from 0.0 to 1.0:
+    // 0.0-0.2: Very focused and deterministic responses, ideal for code analysis and planning
+    // 0.3-0.5: Balanced responses with some creativity, good for general development tasks
+    // 0.6-1.0: More creative and varied responses, useful for brainstorming and exploration
+    "build": {
+      "mode": "primary",
+      "color": "#52a7fa",
+    },
+    "plan": {
+      "mode": "primary",
+      "color": "#9c76ca",
+      // "model": "openrouter/google/gemini-3-pro-preview",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "brainstorm": {
+      "temperature": 0.7,
+      // "prompt": "{file:./prompts/creative.txt}"
+    },
+  },
+  "keybinds": {
+    "leader": "ctrl+o",
+    "session_child_cycle": "<leader>l",
+    "session_child_cycle_reverse": "<leader>h",
+    "session_parent": "<leader>k",
+    "messages_toggle_conceal": "none",
+    "session_list": "none",
+    // "variant_cycle": "<leader>c",
+  }
 }
