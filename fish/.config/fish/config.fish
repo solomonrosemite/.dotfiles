@@ -232,3 +232,4 @@ function post_exec_zellij_tab_rename --on-event fish_prompt
     end
 end
 post_exec_zellij_tab_rename
+set -gx PATH /home/apps/.local/bin $PATH

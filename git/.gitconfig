@@ -36,3 +36,5 @@
 	clean = git-lfs clean -- %f
 [init]
 	defaultBranch = stable
+[coderabbit]
+	machineId = cli/eaf149701d154e1a9902dd745bb5f0bb
