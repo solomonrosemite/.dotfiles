@@ -74,6 +74,9 @@ alias dv='docker volume'
 alias dvl='docker volume ls'
 alias dvr='docker volume rm'
 
+alias claude='claude --dangerously-skip-permissions'
+alias codex='codex -a never'
+
 alias cc='cd (~/.dotfiles/scripts/.config/scripts/open_dir.sh -n 0 -d "$OPEN_DIR_DEPTH" "$OPEN_DIR_PATHS") && [ -f package.json ] || cd src > /dev/null 2>&1 || true'
 
 alias ffd='_fzf_search_directory'
@@ -144,8 +147,10 @@ set fish_user_paths "/opt/homebrew/bin/" $fish_user_paths
 set fish_user_paths "/opt/homebrew/opt/openjdk/bin" $fish_user_paths
 set fish_user_paths "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/" $fish_user_paths
 set fish_user_paths "/usr/bin/" $fish_user_paths
+set fish_user_paths "$HOME/.local/share/bob/nvim-bin"
 set -gx GOPATH "$HOME/.go/"
 set -gx AICHAT_CONFIG_DIR "$HOME/.config/aichat/"
+set -gx PATH "$HOME/.cargo/bin" $PATH
 set -gx PATH $PATH /Users/solomon/.lmstudio/bin
 
 # pnpm

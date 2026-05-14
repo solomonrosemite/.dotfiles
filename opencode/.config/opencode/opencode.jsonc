@@ -28,7 +28,7 @@
     "augment-context-engine": {
       "type": "local",
       "command": [
-        "/opt/homebrew/bin/auggie",
+        "auggie",
         "--mcp",
         "--mcp-auto-workspace"
       ],
@@ -127,17 +127,11 @@
       }
     },
     "brainstorm": {
-      "temperature": 0.7,
+      "temperature": 0.75,
+    },
+    "chat": {
+      "temperature": 0.4,
       // "prompt": "{file:./prompts/creative.txt}"
     },
-  },
-  "keybinds": {
-    "leader": "ctrl+o",
-    "session_child_cycle": "<leader>l",
-    "session_child_cycle_reverse": "<leader>h",
-    "session_parent": "<leader>k",
-    "messages_toggle_conceal": "none",
-    "session_list": "none",
-    // "variant_cycle": "<leader>c",
   }
 }
